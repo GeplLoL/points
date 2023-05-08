@@ -8,21 +8,18 @@ namespace Snake
 {
     class Programi
     {
-        /*asdasd*/
         static void Main(string[] args)
         {
-            Point p1 = new Point();
-            p1.x = 1;
-            p1.y = 3;
-            p1.sym = '*';
-            p1.Draw();
+            Console.SetWindowSize(80, 25);
 
-            Point p2 = new Point();
-            p2.x = 4;
-            p2.y = 5;
-            p2.sym = '#';
-            Draw(p2.x, p2.y, p2.sym);
-            p2.Draw();
+            HorizontalLine upLine = new HorizontalLine(0,78,0,'*');
+            HorizontalLine downLine = new HorizontalLine(0, 78, 24, '*');
+            VertikalLine leftLine = new VertikalLine(0, 24, 0, '*');
+            VertikalLine rightLine = new VertikalLine(0,24,78, '*');
+            upLine.Draw();
+            downLine.Draw();
+            leftLine.Draw();
+            rightLine.Draw();
 
             Console.ReadLine();
         }
