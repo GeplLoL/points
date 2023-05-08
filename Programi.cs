@@ -21,6 +21,8 @@ namespace Snake
             leftLine.Draw();
             rightLine.Draw();
 
+            Snake snake = new Snake(p, 4, Direction.RIGHT);
+
             Console.ReadLine();
         }
         static void Draw(int x, int y,char sym) 

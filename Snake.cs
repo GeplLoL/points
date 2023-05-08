@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    internal class Snake
+    class Snake : Figure
     {
+        public Snake(Point tail, int lenght, int direction)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                Point p = new Point(tail);
+                p.Move(i, direction);
+                pList.Add(p);
+            }
+        }
     }
 }
