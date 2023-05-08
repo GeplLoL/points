@@ -8,9 +8,10 @@ namespace Snake
 {
     class Snake : Figure
     {
-        public Snake(Point tail, int lenght, int direction)
+        public Snake( Point tail, int lenght,Direction direction)
         {
-            for (int i = 0; i < length; i++)
+            pList=new List<Point>();
+            for (int i = 0; i < lenght; i++)
             {
                 Point p = new Point(tail);
                 p.Move(i, direction);
