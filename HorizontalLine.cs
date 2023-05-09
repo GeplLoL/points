@@ -20,7 +20,6 @@ namespace Snake
         }
         public override void Draw()
         {
-            Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor= ConsoleColor.Green;
 
             foreach (Point p in pList)
@@ -29,7 +28,6 @@ namespace Snake
             }
 
             Console.ForegroundColor= ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.White;
         }
     }
 }
