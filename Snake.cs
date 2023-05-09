@@ -10,10 +10,10 @@ namespace Snake
     class Snake : Figure
     {
         public Direction direction;
-        public Snake( Point tail, int lenght,Direction _direction)
+        public Snake(Point tail, int lenght, Direction _direction)
         {
             direction = _direction;
-            pList=new List<Point>();
+            pList = new List<Point>();
             for (int i = 0; i < lenght; i++)
             {
                 Point p = new Point(tail);
@@ -33,10 +33,23 @@ namespace Snake
         }
         public Point GetNextPoint()
         {
-            Point head= pList.Last();
+            Point head = pList.Last();
             Point nextPoint = new Point(head);
             nextPoint.Move(1, direction);
             return nextPoint;
+        }
+        internal bool IsHitTail()
+        {
+            var head = pList.Last();
+            for (int i = 0; i < pList.Count - 2; i++)
+            {
+                if (head.IsHit(pList[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
 
         public void HandleKey(ConsoleKey key)
@@ -71,7 +84,7 @@ namespace Snake
             {
                 return false;
             }
-                
+
         }
     }
 }

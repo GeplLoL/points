@@ -8,6 +8,7 @@ namespace Snake
 {
     class HorizontalLine : Figure
     {
+        
         public HorizontalLine(int xLeft,int xRight, int y, char sym)
         {
             pList = new List<Point>();
@@ -16,6 +17,19 @@ namespace Snake
                 Point p = new Point(x, y, sym);
                 pList.Add(p);
             }
+        }
+        public override void Draw()
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor= ConsoleColor.Green;
+
+            foreach (Point p in pList)
+            {
+                p.Draw();
+            }
+
+            Console.ForegroundColor= ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.White;
         }
     }
 }
