@@ -27,8 +27,10 @@ namespace Snake
             foreach (var wall in wallList)
             {
                 if (wall.IsHit(figure))
-                {
+                {                
                     return true;
+                    Heli song = new Heli();
+                    _ = song.Tagaplaamis_Mangida("../../../sirena.mp3");
                 }
             }
             return false;

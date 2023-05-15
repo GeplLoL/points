@@ -13,7 +13,8 @@ namespace Snake
             Console.SetWindowSize(80, 25);
             Walls walls = new Walls(80, 25);
             walls.Draw();
-
+            Heli song = new Heli();
+            _ = song.Tagaplaamis_Mangida("../../../Song.mp3");
             Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
             snake.Draw();

@@ -76,6 +76,8 @@ namespace Snake
             Point head = GetNextPoint();
             if (head.IsHit(food))
             {
+                Heli song = new Heli();
+                _ = song.Tagaplaamis_Mangida("../../../pukane-7.mp3");
                 food.sym = head.sym;
                 pList.Add(food);
                 return true;
