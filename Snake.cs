@@ -77,7 +77,7 @@ namespace Snake
             if (head.IsHit(food))
             {
                 Heli song = new Heli();
-                _ = song.Tagaplaamis_Mangida("../../../pukane-7.mp3");
+                _ = song.Tagaplaamis_Mangida("../../../mjau.mp3");
                 food.sym = head.sym;
                 pList.Add(food);
                 return true;

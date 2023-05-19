@@ -24,7 +24,7 @@ namespace Snake
         public Point CreateObstacles()
         {
             int x = random.Next(2, mapWidht - 2);
-            int y = random.Next(2, mapHeight - 2);
+            int y = random.Next(4, mapHeight - 4);
             return new Point(x, y, sym);
         }
     }
