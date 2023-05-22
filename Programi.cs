@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -11,10 +12,12 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-
+            Dictionary<string, string> lima = save.FTLlm(@"..\..\..\maakond.txt");
+            lima = save.FTLlm(@"..\..\..\NamePoints.txt");
             int points=0;
             Console.WriteLine("1,2,3-LEVEL");
             string vastus = Console.ReadLine();
+
             Console.Clear();
             if (vastus=="1")
             {
