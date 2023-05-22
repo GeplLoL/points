@@ -5,24 +5,35 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
+//Добавить вторую змейку в 3-тй режим
+//сделать чтобы при повороте в обратную сторону он не поворачивался
+//иметь возможность изменять цвета змейки
+//всё записывать в файл
+//всё разбить по классам(уменьшить код в основном классе)
 namespace Snake
 {
     class Programi
     {
         static void Main(string[] args)
         {
-            Dictionary<string, string> lima = save.FTLlm(@"..\..\..\maakond.txt");
-            lima = save.FTLlm(@"..\..\..\NamePoints.txt");
+            //Dictionary<string, string> lima = save.FTLlm(@"..\..\..\maakond.txt");
+            //lima = save.FTLlm(@"..\..\..\NamePoints.txt");
             int points=0;
             Console.WriteLine("1,2,3-LEVEL");
             string vastus = Console.ReadLine();
-
+            while (vastus!="1" && vastus!="2" && vastus!="3" )
+            {
+                Console.WriteLine("1,2,3-LEVEL");
+                vastus = Console.ReadLine();
+            }
+            Console.WriteLine("Nimi: ");
+            string nimi = Console.ReadLine();
             Console.Clear();
             if (vastus=="1")
             {
                 Console.WriteLine("      Level: " + vastus);
                 Console.WriteLine("      Points: " + points);
+                Console.WriteLine("      " + nimi);
                 Console.SetWindowSize(80, 25);
                 Console.WriteLine(" ");
                 Walls walls = new Walls(80, 25);
@@ -36,7 +47,6 @@ namespace Snake
                 Point food = foodCreator.CreateFood();
                 Console.ForegroundColor = ConsoleColor.Red;
                 food.Draw();
-
                 while (true)
                 {
                     if (walls.IsHit(snake) || snake.IsHitTail())
@@ -56,7 +66,6 @@ namespace Snake
                     {
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         snake.Move();
-
                     }
                     Thread.Sleep(100);
                     if (Console.KeyAvailable)
@@ -70,6 +79,7 @@ namespace Snake
             {
                 Console.WriteLine("      Level: " + vastus);
                 Console.WriteLine("      Points: " + points);
+                Console.WriteLine("      " + nimi);
                 Console.SetWindowSize(50, 25);
                 Walls walls = new Walls(50, 25);
                 walls.Draw();
@@ -78,7 +88,6 @@ namespace Snake
                 Point p = new Point(4, 5, '*');
                 Snake snake = new Snake(p, 4, Direction.RIGHT);
                 snake.Draw();
-
                 FoodCreator foodCreator = new FoodCreator(49, 24, '*');
                 Point food = foodCreator.CreateFood();
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -86,8 +95,6 @@ namespace Snake
                 obstacles obstaclesCreator = new obstacles(50, 25, '+');
                 Point obstacles = obstaclesCreator.CreateObstacles();
                 obstacles.Draw();
-
-
                 while (true)
                 {
                     if (walls.IsHit(snake) || snake.IsHitTail())
@@ -106,7 +113,6 @@ namespace Snake
                         food = foodCreator.CreateFood();
                         Console.ForegroundColor = ConsoleColor.Red;
                         food.Draw();
-
                     }
                     else
                     {
@@ -125,6 +131,7 @@ namespace Snake
             {
             Console.WriteLine("      Level: " + vastus);
             Console.WriteLine("      Points: " + points);
+            Console.WriteLine("      " + nimi);
             Console.SetWindowSize(50, 25);
             Walls walls = new Walls(50, 25);
             walls.Draw();
@@ -183,9 +190,8 @@ namespace Snake
                     ConsoleKeyInfo key = Console.ReadKey();
                     snake.HandleKey(key.Key);
                 }
-            }
-            
+                }
             }
         }   
-    }
+    } 
 }
