@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 //Добавить вторую змейку в 3-тй режим
-//сделать чтобы при повороте в обратную сторону он не поворачивался
 //иметь возможность изменять цвета змейки
-//всё записывать в файл
 //всё разбить по классам(уменьшить код в основном классе)
 namespace Snake
 {
@@ -21,6 +21,17 @@ namespace Snake
             int points=0;
             Console.WriteLine("1,2,3-LEVEL");
             string vastus = Console.ReadLine();
+            Console.WriteLine("Vali värv(red,white, green, yellow  ");
+            string color = Console.ReadLine();
+            while (color!="red" && color != "white" && color != "green" && color != "yellow")
+            {
+                Console.WriteLine("Vali värv(red,white, green, yellow  ");
+                color = Console.ReadLine();
+            }
+            if (color=="red")
+            {
+
+            }
             while (vastus!="1" && vastus!="2" && vastus!="3" )
             {
                 Console.WriteLine("1,2,3-LEVEL");
@@ -64,7 +75,7 @@ namespace Snake
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         snake.Move();
                     }
                     Thread.Sleep(100);
@@ -116,7 +127,7 @@ namespace Snake
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
                         snake.Move();
                     }
                     Thread.Sleep(70);
@@ -192,6 +203,16 @@ namespace Snake
                 }
                 }
             }
-        }   
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            File.AppendAllText("../../../record.txt", nimi + ": " + points + Environment.NewLine);
+            Console.Clear();
+            string[] lines = File.ReadAllLines("../../../record.txt");
+            foreach (string line in lines)
+            {
+                Console.WriteLine(line);
+            }
+
+        }
+
     } 
 }
