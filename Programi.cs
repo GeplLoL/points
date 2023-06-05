@@ -14,236 +14,24 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            int points = 0;
-            string nimi = "";
+            Console.WriteLine("1, 2, 3 - LEVEL");
+            string level = Console.ReadLine();
 
-            Console.WriteLine("1,2,3-LEVEL");
-            string vastus = Console.ReadLine();
-
-            Console.WriteLine("Vali värv (red, white, green, yellow): ");
+            Console.WriteLine("Choose color (red, white, green, yellow): ");
             string color = Console.ReadLine();
+
+            Console.WriteLine("Sisse nimi: ");
+            string playerName = Console.ReadLine();
 
             while (color != "red" && color != "white" && color != "green" && color != "yellow")
             {
-                Console.WriteLine("Vali värv (red, white, green, yellow): ");
+                Console.WriteLine("Choose color (red, white, green, yellow): ");
                 color = Console.ReadLine();
             }
-
-            ConsoleColor selectedColor;
-            switch (color)
-            {
-                case "red":
-                    selectedColor = ConsoleColor.Red;
-                    break;
-                case "white":
-                    selectedColor = ConsoleColor.White;
-                    break;
-                case "green":
-                    selectedColor = ConsoleColor.Green;
-                    break;
-                case "yellow":
-                    selectedColor = ConsoleColor.Yellow;
-                    break;
-                default:
-                    selectedColor = ConsoleColor.Red;
-                    break;
-            }
-
             Console.Clear();
-
-            if (vastus == "1")
-            {
-                Console.WriteLine("      Level: " + vastus);
-                Console.WriteLine("      Points: " + points);
-                Console.WriteLine("      " + nimi);
-
-                Console.SetWindowSize(80, 25);
-                Console.WriteLine(" ");
-
-                Walls walls = new Walls(80, 25);
-                walls.Draw();
-
-                Heli song = new Heli();
-                _ = song.Tagaplaamis_Mangida("../../../Song.mp3");
-
-                Point p = new Point(4, 5, '*');
-                Snake snake = new Snake(p, 4, Direction.RIGHT);
-                snake.Color = selectedColor; // Установка выбранного цвета
-                snake.Draw();
-
-                FoodCreator foodCreator = new FoodCreator(78, 24, '*');
-                Point food = foodCreator.CreateFood();
-                Console.ForegroundColor = ConsoleColor.Red;
-                food.Draw();
-
-                while (true)
-                {
-                    if (walls.IsHit(snake) || snake.IsHitTail())
-                    {
-                        break;
-                    }
-
-                    if (snake.Eat(food))
-                    {
-                        points++;
-                        Console.SetCursorPosition(0, 1);
-                        Console.WriteLine("      Points: " + points);
-                        food = foodCreator.CreateFood();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        food.Draw();
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = snake.Color;
-                        snake.Move();
-                    }
-
-                    Thread.Sleep(100);
-
-                    if (Console.KeyAvailable)
-                    {
-                        ConsoleKeyInfo key = Console.ReadKey();
-                        snake.HandleKey(key.Key);
-                    }
-                }
-            }
-            else if (vastus == "2")
-            {
-                Console.WriteLine("      Level: " + vastus);
-                Console.WriteLine("      Points: " + points);
-                Console.WriteLine("      " + nimi);
-
-                Console.SetWindowSize(50, 25);
-
-                Walls walls = new Walls(50, 25);
-                walls.Draw();
-
-                Heli song = new Heli();
-                _ = song.Tagaplaamis_Mangida("../../../miraz.mp3");
-
-                Point p = new Point(4, 5, '*');
-                Snake snake = new Snake(p, 4, Direction.RIGHT);
-                snake.Color = selectedColor; // Установка выбранного цвета
-                snake.Draw();
-
-                FoodCreator foodCreator = new FoodCreator(49, 24, '*');
-                Point food = foodCreator.CreateFood();
-                Console.ForegroundColor = ConsoleColor.Red;
-                food.Draw();
-
-                obstacles obstaclesCreator = new obstacles(50, 25, '+');
-                Point obstacles = obstaclesCreator.CreateObstacles();
-                obstacles.Draw();
-
-                while (true)
-                {
-                    if (walls.IsHit(snake) || snake.IsHitTail())
-                    {
-                        break;
-                    }
-
-                    if (snake.Eat(obstacles))
-                    {
-                        break;
-                    }
-
-                    if (snake.Eat(food))
-                    {
-                        points++;
-                        Console.SetCursorPosition(0, 1);
-                        Console.WriteLine("      Points: " + points);
-                        food = foodCreator.CreateFood();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        food.Draw();
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = snake.Color;
-                        snake.Move();
-                    }
-
-                    Thread.Sleep(70);
-
-                    if (Console.KeyAvailable)
-                    {
-                        ConsoleKeyInfo key = Console.ReadKey();
-                        snake.HandleKey(key.Key);
-                    }
-                }
-            }
-            else if (vastus == "3")
-            {
-                Console.WriteLine("      Level: " + vastus);
-                Console.WriteLine("      Points: " + points);
-                Console.WriteLine("      " + nimi);
-
-                Console.SetWindowSize(50, 25);
-
-                Walls walls = new Walls(50, 25);
-                walls.Draw();
-
-                Heli song = new Heli();
-                _ = song.Tagaplaamis_Mangida("../../../DVRST.mp3");
-
-                Point p = new Point(4, 5, '*');
-                Snake snake = new Snake(p, 4, Direction.RIGHT);
-                snake.Color = selectedColor; // Установка выбранного цвета
-                snake.Draw();
-
-                FoodCreator foodCreator = new FoodCreator(50, 25, '*');
-                Point food = foodCreator.CreateFood();
-                Console.ForegroundColor = ConsoleColor.Red;
-                food.Draw();
-
-                obstacles obstaclesCreator = new obstacles(50, 25, '*');
-                Point obstacles = obstaclesCreator.CreateObstacles();
-                obstacles.Draw();
-
-                while (true)
-                {
-                    if (walls.IsHit(snake) || snake.IsHitTail())
-                    {
-                        break;
-                    }
-
-                    if (points == 1)
-                    {
-                        Console.Clear();
-                        while (points == 1)
-                        {
-                            Console.WriteLine("You WIN!! You WIN!! You WIN!! You WIN!! You WIN!! You WIN!! You WIN!!");
-                        }
-                    }
-
-                    if (snake.Eat(obstacles))
-                    {
-                        break;
-                    }
-
-                    if (snake.Eat(food))
-                    {
-                        points++;
-                        Console.SetCursorPosition(0, 1);
-                        Console.WriteLine("      Points: " + points);
-                        food = foodCreator.CreateFood();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        food.Draw();
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = snake.Color;
-                        snake.Move();
-                    }
-
-                    Thread.Sleep(130);
-
-                    if (Console.KeyAvailable)
-                    {
-                        ConsoleKeyInfo key = Console.ReadKey();
-                        snake.HandleKey(key.Key);
-                    }
-                }
-            }
+            Game game = new Game(level, color);
+            game.Start();
         }
+
     }
 }
